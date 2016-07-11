@@ -23,6 +23,11 @@ gulp.task('compile', function() {
 			presets: ['es2015', 'react']
 		})
 		.bundle()
+		.on('error', function(e) {
+			console.error(e.message);
+			console.error(e.codeFrame);
+			this.emit('end');
+		})
 		.pipe(source('dist.js'))
 		.pipe(gulp.dest('./public'))
 		.pipe(livereload());
