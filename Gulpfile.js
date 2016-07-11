@@ -4,7 +4,6 @@ var browserify = require('browserify');
 
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
-var sourcemaps = require('gulp-sourcemaps');
 
 var livereload = require('gulp-livereload');
 
