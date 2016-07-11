@@ -4,6 +4,7 @@ var browserify = require('browserify');
 
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
+var sourcemaps = require('gulp-sourcemaps');
 
 var livereload = require('gulp-livereload');
 
@@ -15,11 +16,12 @@ var paths = {
 gulp.task('compile', function() {
 	return browserify({
 			entries: paths.entry,
-			extensions: ['.js']
+			extensions: ['.js'],
+			debug: true
 		})
-		.transform(babelify.configure({
+		.transform('babelify', {
 			presets: ['es2015', 'react']
-		}))
+		})
 		.bundle()
 		.pipe(source('dist.js'))
 		.pipe(gulp.dest('./public'))
